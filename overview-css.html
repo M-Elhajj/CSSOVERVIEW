@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSS overview</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="M.Elhajj">
+  <meta name="description" content="WebPL">
+  <meta name="keywords" content="Programming Languages for Web Applications, usability, web application, how to build web app, how to improve usability, how to design web app, how to design user interface, how to write java servlet, how to write jsp">  
+       
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="main-style.css">  
+  <link rel="stylesheet" href="supplement-style.css">
+
+  <style>
+  body {    
+    font-family: Arial, sans-serif;
+  }
+  div.col-sm-3 div {
+    height: 10px;
+  }
+  div.col-sm-9 div {
+    font-size: 14px;
+  }
+    
+  dd {
+    padding: 0; margin: 0 0 0 2em;
+  }
+  
+  fieldset {
+    padding: 5px 25px 10px 25px;
+    width: 380px;  
+  }
+  
+  label { 
+    display: block; 
+    width: 65px;
+    float: left;
+    padding-left: 5px; 
+  }
+      
+  
+  h1 { 
+    color: #882002;  
+    font-family: Georgia, serif; 
+  } 
+     
+  h2 { 
+    color: navy; 
+  } 
+      
+  p strong, p em { 
+    font-size: 1.5em; 
+    text-decoration: underline;     
+  } 
+ 
+  p { 
+    padding: 2px 10px 2px 10px; 
+    border-radius: 8px; 
+    border: 2px solid #ffffff;
+    margin: 10px;     
+  } 
+ 
+  p:hover { 
+    border: 2px solid #73AD21; 
+} 
+     
+  form label {
+    font-weight: bold;
+  }
+    
+  .time {
+    font-style: italic;
+    color: red;
+  }
+
+  .required {
+    background-color: #EFE1C6;
+  }
+
+  .spanred {  
+    font-size: 1.5em;
+    color: red; 
+    font-weight: bold;
+  }
+
+  .primary {
+    color: purple; 
+    font-style: italic;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  #intro {
+    color: green;
+    font-size: 0.8em;
+  }
+    
+  .contentblock {
+    padding: 5px 10px 5px 10px;
+    border: 2px solid #d1e0e0;
+    border-radius: 5px; 
+  }
+    
+  /***** positioning *****/
+
+  .relativepositioning {
+    position: relative;
+    top: 10px;
+    left: 20px;
+  }
+    
+  .absolutepositioning {  
+    position: absolute;
+    background-color: lightgray;
+    left: 30px;
+    width: 250px;
+  }
+    
+  .fixedpositioning {
+    position: fixed;
+    background-color: blue;
+    left: 50px;
+    width: 250px; 
+  }
+    
+/*   floatpositioning { */
+/*     float: left; */
+/*     background-color: lightyellow; */
+/*     left: 100px; */
+/*     width: 250px; */
+/*   } */
+    
+  /***** stacking *****/  
+  h5.stacking {
+    position: absolute;
+    background: lightgray;
+    opacity: 0.6;
+    z-index: 10;
+  }
+    
+  /***** transition *****/    
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: lightgreen;
+    transition: width 2s, height 2s, background-color 2s, transform 2s;
+  }
+      
+  .box:hover {
+    background-color: yellow;
+    width: 200px;
+    height: 200px;
+    transorm: rotate(180deg);
+  }    
+    
+  /***** conflict resolution *****/
+    div.border {
+    border-style:solid; 
+    width:95%;
+  }
+        
+  pre {
+    width: 95%;
+    overflow: auto;     
+    font-size: 12px;   
+  }
+      
+  </style>  
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+
+  <div class="container">
+    <div class="row">
+      <nav class="col-sm-3" id="myScrollspy">          
+        <ul class="nav nav-pills nav-stacked">
+        <h3><a href="overview-css.php">CSS <br />Overview</a></h3>
+          <li class="active"><a href="#section1">What is CSS?</a></li>
+          <li><a href="#section2">Why CSS</a></li>
+          <li><a href="#section3">How to use CSS</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">How to define CSS<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#section41">Rule structure</a></li>
+              <li><a href="#section42">Types of selectors</a></li>
+            </ul>
+          </li>                          
+          <li><a href="#section5">Common properties</a></li>   
+          <li><a href="#section6">Box properties</a></li>
+          <li><a href="#section7">Centering content</a></li>      
+          <li><a href="#section8">Visibility and layout</a></li>
+          <li><a href="#section9">Positioning schemes</a></li>
+          <li><a href="#section10">Stacking elements</a></li>      
+          <li><a href="#section11">Transform</a></li>
+          <li><a href="#section12">Transitions</a></li>
+          <li><a href="#section13">Additional styling</a></li>         
+          <li><a href="#section14">Conflict resolution</a></li> 
+          
+          
+      </nav>
+      
+      <div class="col-sm-9">
+        <h1 style="color:navy">CSS Overview</h1>
+        <div id="fadeshow">
+        <i>This is a short introduction to writing HTML. 
+        You should review the page source, 
+        particularly focusing on how this HTML page is written 
+        and how it is rendered on the screen.
+        For more information, please refer to  
+        "Programming the World Wide Web" by Robert W. Sebesta book 
+        and <a href="https://www.w3schools.com/Css/" class="offsite" target="_blank" title="https://www.w3schools.com/Css/">W3 Web Schools</a>        
+        </i>
+        <br/>
+        <font size=-1 style="font-style:italic; color:green">
+        
+        </font>
+        </div>       
+      <div id="section1">          
+        <h3 class="subtitle">What is CSS?</h3>
+        <div class="contentblock">
+        <p>
+          CSS (Cascading Style Sheet) is a style sheet language
+          that let you <em>style</em> the html elements on your web page. 
+          It is embedded inside html but it is <strong>not</strong>
+          html itself.    
+        </p>
+        <p>
+          Note: if the web browser does not recognize any specific tags, formats, or settings, 
+          the browser will render the content based on its default styles.
+        </p>
+        </div>
+      </div>     
+      <br/>
+      
+      <!-- ############################# -->
+         
+      <div id="section2">    
+        <h3 class="subtitle">Why CSS</h3>
+        <div class="contentblock">
+        <p>
+          Define how to display html elements
+          <br />
+          <img src="html-css.png" width="40%" />
+          <br /><br/>
+          <span style="color:green">Can we format/style the document using html? </span>
+        </p>
+        <p>
+          Separating visual <font color="red">presentation</font> (CSS) 
+          from document <font color="red">structure</font> (HTML)
+          increases readability and maintaintability: 
+          (i) enable changes to one or the other and 
+          (ii) enable style to be reused across sets of elements.
+        </p>        
+        </div>
+      </div>  
+      <br/>
+      
+      <!-- ############################# -->
+      
+      <div id="section3">    
+        <h3 class="subtitle">How to use CSS</h3>     
+        <div class="contentblock">   
+        <font size="+1"><b>Three levels of style sheets</b></font> <br/>  
+          <h4 style="background-color:lavender; display:inline-block; padding:2px 10px 2px 10px">Inline</h4>
+          <ul>
+            <li>
+              <font size=-1; color=red>Specify the style property in 
+                      the opening tag of the particular html element
+              </font>
+            </li>
+            <li>Format
+              <br/>              
+<pre>style="property_1:value_1; property_2:value_2; ...; 
+       property_n:value_n;"</pre>              
+            </li>
+            <li>Example:
+<pre>&lt;h1 style="color:red; text-decoration: underline;"&gt;CSS Examples&lt;/h1&gt;
+   ...
+&lt;font size=-1; color="red"&gt;
+   Specify the style property in 
+   the opening tag of the particular html element
+&lt;/font&gt;</pre>            
+            </li>
+          </ul>
+          <br/>
+          <h4 style="background-color:lavender; display:inline-block; padding:2px 10px 2px 10px">Document-level</h4>
+          <ul>
+            <li>Specify the style specifications in 
+                the document head section
+                and apply to the entire body of the document
+            </li>
+            <li>Format
+<pre>&lt;head&gt;
+   ...  
+   &lt;style&gt; 
+      rule list 
+   &lt;/style&gt; 
+   ... 
+&lt;/head&gt; </pre>
+            </li>
+          </ul>
+          <br/>
+          <h4 style="background-color:lavender; display:inline-block; padding:2px 10px 2px 10px">External-level</h4>
+          <ul>
+            <li>Write the style specifications in a separated file 
+                with the type <code>.css</code>.  
+                Example: <a href="main-style.css">
+                main-style.css</a>
+            </li>
+            <li>Link to <code>.css</code> file in the header of
+                the html document
+<pre>&lt;head&gt;
+   ...  
+   &lt;link rel="stylesheet" type="text/css" 
+         href="main-style.css" /&gt;  
+   ... 
+&lt;/head&gt;</pre>
+            </li>
+          </ul>
+        <p>
+        <span style="color:green">Pros and Cons? </span>
+        </p>
+      </div>      
+      </div> 
+      <br/>
+      
+      <!-- ############################# -->
+            
+      <div id="section4">    
+        <h3 class="subtitle">How to define CSS</h3>
+        <div class="contentblock">             
+        <div id="section41">
+          <h4 style="background-color:lavender; display:inline-block; padding:2px 10px 2px 10px">Rule structure</h4>
+          <br/>
+          <img src="rule-structure.png" alt="image showing rule structure" width="70%" />
+          <br /><br/>
+          Rules control how sets of boxes and their contents are presented.
+          <ul>
+            <li><b>Selector:</b> a pattern used to select the element(s) to be styled</li>
+            <li><b>Declaration:</b> Description indicating how selected elements should be styled</li>
+          </ul>
+          Example: 
+<pre>p { font-family: Arial; }</pre>
+  <ul>
+    <li>Selector: select and apply the style to all <code>&lt;p&gt;</code> elements</li>
+    <li>Declaration: use Arial font family</li>  
+        </div>
+        <br/>
+                                   
+        <div id="section42"> 
+          <h4 style="background-color:lavender; display:inline-block; padding:2px 10px 2px 10px">Types of selectors</h4>
+          <br/>
+          <ul>
+            <li><u><b>Element (Simple selector or type selector)</b></u>: 
+              Apply to a particular element name 
+              or a list of element names separated by commas
+              <br />
+              Example:
+<pre>h1 { property-value list }
+h2, h3 { property-value list } </pre>    
+              Apply these properties to all <code>&lt;h1&gt;</code>
+              <br/><br/> 
+            </li>
+            <li><u><b>Id selectors</b></u>: 
+              Allow the application of a style to one specific element
+              (apply to the element with the given id). 
+              <ul>
+                <li>Each element can have only one id</li>
+                <li>Each page can have only one element with that id.
+                    Thus, a separate rule must be written for each element.</li>
+                <li>Use when there is a single element on the page 
+                    that will take the style. </li>            
+              </ul>                
+              Example: 
+<pre>#intro {
+   color: green;
+   font-size: 0.8em;
+}  </pre>
+              Usage:
+<pre>&lt;p id="intro"&gt;
+   This is a short introduction to writing CSS.
+   Please feel free to compare page source with the screen.
+&lt;/p&gt;</pre>
+            <br/>
+            </li>    
+            <li><u><b>Class selectors</b></u>: 
+              Allow different occurrences of the same element
+              to use different style specifications
+              <br/>
+              Example:
+<pre>p.normal {property-value list}
+p.warning {property-value list} </pre>    
+              Usage: 
+<pre>&lt;p class="normal"&gt;
+   A paragraph of text that we want to be presented 
+   in normal presentation style
+&lt;/p&gt;
+        
+&lt;p class="warning"&gt;
+   A paragraph of text that is a warning to the reader,
+   which should be presented in an especially noticeable style
+&lt;/p&gt;  </pre>
+            <br/>
+            </li>
+            <li><u><b>Generic class selectors</b></u>: 
+              Can be applied to the content of more than one kind of element
+              (defined without an element name, begins with a period)
+              <ul>
+                <li>Multiple elements can use the same class</li>
+                <li>A given element can have multiple classes assocaited to it</li>  
+                <li>Use to consistently style multiple elements throughout the page (or site). 
+                    Classes are useful when there are multiple elements that shares the same style.</li>
+              </ul>
+              Example:
+<pre>.sale {property-value list} </pre>    
+              Usage: 
+<pre>&lt;h3 class="sale"&gt; Weekend Sale &lt;/h3&gt;
+   ...
+&lt;p class="sale"&gt;
+   ...
+&lt;/p&gt;  </pre>
+            <br/>
+            </li>
+            <li><u><b>Pseudo class</b></u>: 
+              Specify that certain styles apply when something happens, 
+              rather than the target element simply exists. 
+              Examples of pseudo classes
+<pre>:active     /* elements activated by user. For mouse clicks, occurs between mouse down and mouse up. */
+:checked    /* radio, checkbox, option elements that are checked by user */
+:disabled   /* elements that cannot receive focus */
+:focus      /* element that currently has the focus */
+:hover      /* elements that are currently hovered over by mouse */
+:link       /* link element that has not yet been visited */
+:visited    /* link element that has been visited */ </pre>
+              Usage: 
+<pre>a:link {         /* unvisited link */
+   color: red;   /* text color */
+}
+a:visited {      /* visited link */ 
+   color: blue;
+}
+a:hover {        /* mouse over link */ 
+   color: green;
+}
+a:active {       /* current link */ 
+   color: purple;
+}
+a:focus {        /* focused link */
+   color: purple; 
+}
+        
+/* group selectors */
+a:hover, a:active, a:focus {
+   background-color: yellow; 
+}  </pre>    
+            </li>
+          </ul>          
+        </div>
+      </div>
+      </div>              
+      <br/>                       
+                   
+      <!-- ############################# -->
+                         
+      <div id="section5">
+        <h3 class="subtitle">Some common properties</h3>
+        <div class="contentblock">     
+        Each property can have one or more comma separated values 
+        <br/><br/>
+        <ul>
+          <li><u><b>Color</b></u>: specifies text color
+<pre>color: red;             /* specified by name */  
+color: #ff0000;         /* specified by hexadecimal value */
+color: rgb(255, 0, 0);  /* specified    </pre>
+            Usage: 
+<pre>body {  
+   color: red;    
+}  </pre>    
+          <br/>
+          </li>
+          <li><u><b>Background color</b></u>: specifies background color
+<pre>background-color: black;   
+background-color: #000000;   
+background-color: rgb(0, 0, 0); </pre>
+            Usage: 
+<pre>body {  
+   background-color: yellow;    
+} 
+table {
+  background-color:#000080;     /* navy */
+} </pre>    
+          <br/>
+          </li>
+          <li><u><b>Font family</b></u>: specifies the font family of the text
+<pre>font-family: Arial, Helvetica, Futura</pre>
+            Usage: 
+<pre>body {
+   font-family: Arial, sans-serif;
+} </pre>  
+          <br/>        
+          </li>      
+          <li><u><b>Font size</b></u>: specifies the size of the font 
+<pre>font-size: 14px;    /* absolute size: pixels */
+font-size: 1.2em;   /* relative size: 1.2 times or 120% of the current font size in pixels */
+font-size: 75%;     /* relative size: 75% of the current font size in pixels */
+font-size: larger;  /* relative size: adjust the font size relative to the font size of the parent element */ </pre>
+          <br/>
+          </li>
+          <li><u><b>Font style</b></u>: specifies the font style 
+<pre>font-style: italic; </pre>
+          <br/>
+          </li>
+          <li><u><b>Font weight</b></u>: specifies the degree of boldness 
+<pre>font-weight: bold;  </pre>
+            Usage: 
+<pre>h2 {
+   font-family: 'Time New Roman';
+   font-size: 2em;
+   font-style: italic;
+   font-weight: bold;
+}  </pre>    
+          <br/>      
+          </li>
+          <li><u><b>Font shorthand</b></u>: specifies multiple property value in the font property 
+<pre>font: <i>property-value-list</i> </pre>
+            Usage: 
+<pre>h2 {
+   font: 'Time New Roman' 2em italic bold;
+}  </pre> 
+          <br/>         
+          </li>    
+          <li><u><b>Text decoration</b></u>: specifies some special features of text 
+<pre>text-decoration: line-through;
+text-decoration: overline;
+text-decoration: underline;
+text-decoration: none; </pre>
+            Usage: 
+<pre>p.delete {
+   text-decoration: line-through;
+}
+p.cap {
+   text-decoration: overline;
+}
+p.attention {
+   text-decoration: underline;
+} </pre>
+          <br/>          
+          </li>
+          <li><u><b>Text indent</b></u>: indent the first line of a paragraph 
+<pre>p.indent {
+   text-indent: 2em; 
+}
+...
+&lt;p class="indent"&gt;
+   A homework exercise is not only an important contributor
+   to what you learn in a class, but is often an important
+   part of your grade as well. From a student's point of view, 
+   homework is usually the first time the information
+   from the course is used, and thus is a very valuable
+   early feedback mechanism that helps the student
+   prepare for exams.          
+&lt;/p&gt; </pre>
+          <br/>                
+          </li>
+          <li><u><b>Text align</b></u>: arrange text horizontally 
+<pre>text-align: left;
+text-align: center; 
+text-align: right;
+text-align: justify; </pre>
+            Usage: 
+<pre>p {
+   text-align: right; 
+}  </pre> 
+          <br/>               
+          </li>
+          <li><u><b>Float</b></u>: specify that text should flow around some element,
+             often an image or a table     
+<pre>float: left; 
+float: right;
+float: none;   </pre>
+            Usage: 
+<pre>img {
+   float: right; 
+}  </pre>  
+          <br/>              
+          </li>
+          <li><u><b>Padding</b></u>: generate space around content
+<pre>padding-top: 50px;
+padding-right: 30px;
+padding-bottom: 50px;
+padding-left: 80px;
+padding: 50px 30px 50px 80px;     /* specify space of top, right, bottom, left padding */ 
+padding: 50px 30px 50px;          /* specify space of top, right, bottom padding */
+padding: 50px 30px;               /* specify space of top, right padding */
+padding: 50px;                    /* specify space of all four paddings */  </pre>
+            Usage: 
+<pre>p.special {
+   padding: 25px 50px 75px 25px;
+} </pre>  
+          <br/>              
+          </li>
+          <li><u><b>Border</b></u>: specify the style, width, and color of an element's border
+            <ul>
+              <li>border-style: specify the kind of border to display</li>
+              <li>border-width: specify the width of the four borders</li>
+              <li>border-color: specify the color of the four borders</li>
+            </ul>         
+<pre>border-style: dotted;                    
+border-style: dashed;                    
+border-style: solid;
+border-style: double; 
+border-style: groove;
+border-style: ridge;
+border-style: inset; 
+border-style: outset;
+border-style: none; 
+border-style: hidden;
+border-style: dotted dashed solid double;   /* combine multiple styles */
+        
+border-width: 5px;
+border-width: medium;
+border-width: 2px 10px 4px 20px         /* specify width of top, right, bottom, left borders */
+        
+border-color: red;
+border-color: red green blue yellow;    /* specify color of top, right, bottom, left borders */   </pre>
+            Usage: 
+<pre>p.special {
+   border-style: solid;
+   border-width: thick;
+   border-color: red;
+}
+p.special2 {
+   border: 3px dotted #0088dd;
+}  </pre>             
+          </li>    
+        </ul>
+        </div>
+      </div>  
+      <br/>
+      
+      <!-- ############################# -->
+                          
+      <div id="section6">
+        <h3 class="subtitle">Box properties</h3>
+        <div class="contentblock">
+          <br/>
+          <img src="css-boxproperty.png" alt="box property image" width="75%" />
+          <br />
+          <ul>
+            <li>Boxes, by default, are sized just large enough to fit their contents</li>
+            <li>Sizes can be specified using <code>px</code> or <code>%</code> (<code>%</code> values are relative to the container dimensions)</li>
+            <li>Margin can be specified in clockwise order ([top][right][bottom][left])</li>
+            <li>Border can include [width][style][color]. </li> 
+          </ul>          
+        </div>
+      </div>
+      <br/>
+      
+      <!-- ############################# -->          
+          
+      <div id="section7">
+        <h3 class="subtitle">Centering content</h3>
+        <div class="contentblock">
+          Steps to center an element inside a container: 
+          <ol>
+            <li>Must first ensure that element is narrower than container
+              <ul>
+                <li>By default,element will expand to fill entire container</li>
+                <li>Thus, the width of an element must be explicitly set</li>
+              </ul>
+            </li>
+            <li>Use <code>auto</code> value for left and right to create equal gaps</li>    
+          </ol>
+          Example
+<pre>.centered {
+   width: 300px;
+   margin: 10px auto 10px auto;      /* auto set margin for right and left */
+   border: 2px solid #0088dd;
+} </pre>                
+        </div>  
+      </div>
+      <br/>
+      
+      <!-- ############################# -->         
+          
+      <div id="section8">
+        <h3 class="subtitle">Visibility and layout</h3>    
+        <div class="contentblock">  
+          To force elements to be inline or block element 
+<pre>display: inline;
+display: block; </pre>
+          <br/>         
+          To cause element to not be laid out or take up any space 
+                (very useful for content that is dynamically added or removed) 
+<pre>display: none;  </pre>
+          <br/>
+          To cause boxes to be invisible, but still take up space
+<pre>visibility: hidden; </pre>
+          <br/>
+          Example
+<pre>&lt;ul&gt;
+   &lt;li&gt;Home&lt;/li&gt;
+   &lt;li&gt;Products&lt;/li&gt;
+   &lt;li class="coming-soon"&gt;Services&lt;/li&gt;
+   &lt;li&gt;About&lt;/li&gt;
+   &lt;li&gt;Contact&lt;/li&gt;
+&lt;/ul&gt; </pre>
+<pre>li {
+   display: inline; 
+   margin-right: 10px; 
+}
+li.coming-soon {
+   display: none; 
+} </pre>
+          This produces 
+<pre>Home  Products  About  Contact  </pre>
+          <br/>
+<pre>li {
+   display: inline; 
+   margin-right: 10px; 
+}
+li.coming-soon {
+   visibility: hidden; 
+}  </pre>
+          This produces
+<pre>Home  Products            About  Contact </pre>
+        
+        </div>
+      </div>
+      <br/>
+      
+      <!-- ############################# -->
+
+      <div id="section9">
+        <h3 class="subtitle">Positioning schemes</h3>
+          <div class="contentblock">
+            Five schemes:   
+            <ul>
+              <li>Normal flow (default)</li>
+              <li>Relative positioning</li>
+              <li>Absolute positioning</li>
+              <li>Fixed positioning</li>
+              <li>Float positioning</li>
+            </ul>
+  
+  <img src="style-positioning.png" alt="images showing styles for different positioning" width="260px" />
+  <br /><br />
+  <img src="positioning.png" alt="images showing different positioning" width="100%" />
+        </div>        
+      </div>
+      <br/>
+      
+      <!-- ############################# -->
+
+      <div id="section10">
+        <h3 class="subtitle">Stacking elements</h3>
+        <div class="contentblock">
+          <img src="stacking.png" alt="source: images showing stacking (z-index and opacity)" width="180px" />
+          <br />
+          <img src="stacking-2.png" alt="images showing stacking (z-index and opacity)" width="90%" />
+          <br /><br />
+        </div>
+      </div>
+      <br/>
+      
+      <!-- ############################# -->
+
+      <div id="section11">
+        <h3 class="subtitle">Transform</h3>
+        <div class="contentblock">
+          A transformation is an effect that lets an element change shape, size and position.
+          <br /><br />
+          <img src="transform.png" alt="imges showing transformation" width="100%" />
+        </div>      
+      </div>
+      <br/>
+      
+      <!-- ############################# -->
+
+      <div id="section12">
+        <h3 class="subtitle">Transitions</h3>
+        <div class="contentblock">
+          Transitions cause the property values to be changed smoothly (from one value to another), over a given duration.
+          <br /><br/>
+          <img src="transition.png" alt="imges showing transition" width="370px" />
+          <br /><br/>
+          Hover over the div element below, to see the transition effect.
+          <div class="box">Transition</div>
+          <br/>
+        </div>      
+      </div>
+      <br/>
+      
+      <!-- ############################# -->
+      
+      <div id="section13">
+        <h3 class="subtitle">Additional styling</h3>
+        <div class="contentblock">  
+          <u><b>&lt;span&gt;</b></u> tag: specify style/presentation for a particular part of text
+<pre>&lt;style type="text/css"&gt;
+   .spanred {
+      font-size: 1.5em;
+      color: red; 
+      font-weight: bold;
+   }
+&lt;/style&gt;
+...
+&lt;p&gt;
+   Homework is due &lt;span class="spanred"&gt;before class&lt;/span&gt; on the day it is due. 
+&lt;/p&gt; </pre>
+          <p>
+            Homework is due <span class="spanred">before class</span> on the day it is due.
+          </p>
+          <br />     
+
+          <u><b>&lt;div&gt;</b></u> tag: specify style/presentation for a section/division of a document
+<pre>&lt;style type="text/css"&gt;
+   .primary {
+      font-size: 1.5em;
+      color: purple; 
+      font-weight: bold;
+   }
+&lt;/style&gt;        
+...
+&lt;p&gt;This is some text.&lt;/p&gt;
+&lt;div class="primary"&gt;
+      &lt;h3&gt;This is a heading in a div element&lt;/h3&gt;
+      &lt;p&gt;This is some text in a div element.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This is some text.&lt;/p&gt;  </pre>
+          <p>This is some text.</p>
+          <div class="primary">
+            <h3>This is a heading in a div element</h3>
+            <p>This is some text in a div element.</p>
+          </div>
+          <p>This is some text.</p>
+        </div>
+      </div>
+      <br/>
+      
+      <!-- ############################# -->      
+
+      <div id="section14">
+        <h3 class="subtitle">Conflict Resolution</h3>
+        <div class="contentblock"> 
+          Multiple styles may be defined for the same property of a selector.  
+          Cascade rules are used to determine which styles will be applied.
+          <br/> <br/>
+<pre>  /* cstyle.css – an external style sheet for use with cascade.html */
+   p { font-size: 0.8em; }  </pre>
+          <br/>
+<pre>&lt;!doctype html&gt;
+&lt;!-- cascade.html --&gt;
+&lt;html lang ="en"&gt;
+   &lt;head&gt;
+      &lt;title&gt; Style sheet levels &lt;/title&gt;
+      ...
+      &lt;link rel="stylesheet" type="text/css" href="cstyle.css" /&gt;
+      
+<pre>    &lt;style type="text/css"&gt;
+            p.docstyle { font-size: 1.2em; }
+    &lt;/style&gt;</pre>   &lt;/head&gt;
+   &lt;body&gt;        
+      &lt;p&gt;
+         Now is the time
+      &lt;/p&gt;
+      &lt;p class="docstyle"&gt;
+         for all good men
+      &lt;/p&gt;
+      <pre>    &lt;p class="docstyle" style="font-size:1.6em"&gt;
+       to come to the aid
+    &lt;/p&gt;</pre>   &lt;/body&gt;
+&lt;/html&gt;  </pre>  
+  
+            <h4 style="background-color:lavender; display:inline-block; padding:2px 10px 2px 10px">Cascade rules</h4>
+            <ul>
+              <li>Id is more specific than class; class is more specific than element</li>
+              <li>The longer the selector, the more specific it is
+              <li>The more specific rule wins</li>
+              <li>If style rules are equally specific, the last one wins</li>
+            </ul>
+<pre>#id1 #id2 h1 {color: red; }  
+#id1 #id2 h1 {color: green; }     /* winner */
+#id1 h1 {color: blue; }  </pre>
+        </div>
+      </div>
+      <br/>
+      
+      <!-- ############################# -->
+      
+     
+      
+      
+      <!-- ############################# -->
+
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+  
+    </div>  
+  </div>
+</div>
+
+</body>
+</html>
